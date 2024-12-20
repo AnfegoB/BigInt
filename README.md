@@ -41,11 +41,55 @@ To install `BigInt`, simply download the latest release from the GitHub reposito
 ```cpp
 #include "bigint.hpp"
 ```
+
 ### Constructors
+This bigint C++ class will allow to handle arbitrary-precision integers. This class should be viewed as an extension of the usual C++ signed integer types, except that it allows signed integers of unlimited range limited only by the computer's memory. This specific implementation will store internally the integers in C++ vector objects with base 10. The general form of a bigint is: digits[0]: sign (0 or 1), digits[1]: 10^0, digits[2]:10^1 ...
 
 #### Default constructor
+The default constructor generates the bigint equal to 0. No input is required. 
+
+```cpp
+#include <stdexcept>
+#include "bigint.hpp"
+#include <iostream>
+#include <random>
+#include <vector>
+int main()
+{
+bigint default_constructor;
+}
+```
 
 #### int64_t constructor
+Constructs a new bigint object from a int64_t integer.  It takes the integer number as input. 
+
+```cpp
+#include <stdexcept>
+#include "bigint.hpp"
+#include <iostream>
+#include <random>
+#include <vector>
+int main()
+{
+int64_t int64_t_n = 12345678987654321;
+bigint int64_t_construct(int64_t_n);
+}
+```
+
+It also works with negative numbers
+
+```cpp
+#include <stdexcept>
+#include "bigint.hpp"
+#include <iostream>
+#include <random>
+#include <vector>
+int main()
+{
+int64_t int64_t_negative = -12345678987654321;
+bigint int64_t_construct_negative(int64_t_negative);
+}
+```
 
 #### string constructor
 
@@ -107,9 +151,6 @@ This section provides a complete reference to classes, member functions and obje
     * `bigint operator*(bigint lhs, const bigint &rhs)`: Overloading the * operator. In this case the idea of overloading *= first and then the * without reference is taken from the lecture notes.
 * Additional functions:
     * `bigint random_bigint(size_t const &num_digits)`: Generates a random bigint number from a given number of digits
-
-
-
 
 
     
