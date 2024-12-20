@@ -174,8 +174,8 @@ public:
         }
     }
     /**
-     * @brief Get the vec object corresponding to the digits
-     * This is useful because then we can use the member functions of vectors when
+     * @brief Gets the vector object corresponding to the bigint digits
+     * This is useful because then we can use the member functions of vector class when
      * overloading operators for the bigint class
      * @return std::vector<uint8_t>
      */
@@ -328,7 +328,7 @@ bool operator>=(const bigint &lhs, const bigint &rhs) { return ((lhs > rhs) || (
 
 /**
  * @brief Overloading the < operator
- * Checks for greater than or equal negates the result
+ * Checks for greater than or equal and negates the result.
  * @param lhs
  * @param rhs
  * @return true
@@ -511,7 +511,7 @@ bigint operator++(bigint &big, int)
  * @brief Overloading the -= operator
  * Initially it checks for a trivial sum
  * It checks for sign operations (a - (-b) = a + b) and (-a - ( - b ) = b - a)
- * It only receives positive bigint integers, it uses += to receive the appropiate input
+ * It only receives positive bigint integers, it uses += to receive the appropriate input
  * It cheeks if the rhs is bigger than the lhs and decides if the sign will be -
  * It takes the number at the least significant position and if the length is shorter than the result use a 0 instead
  * Then it subtracts them and subtracts the carry, if the result is below 0 then 1 is carried over and 10 is summed.
@@ -640,7 +640,7 @@ bigint operator-(bigint lhs, bigint rhs)
 }
 
 /**
- * @brief Overloading the pre-decrement operator
+ * @brief Overloading the pre-decrement operator --
  * It decrements by one and then returns the bigint.
  * @param big
  * @return bigint&
@@ -654,7 +654,7 @@ bigint& operator--(bigint& big)
 }
 
 /**
- * @brief Overloading the pre-decrement operator
+ * @brief Overloading the pre-decrement operator --
  * It returns the bigint and then decrements by one.
  * @param big
  * @return bigint
@@ -791,6 +791,13 @@ bigint operator*(bigint lhs, const bigint &rhs)
     return lhs;
 }
 
+
+/**
+ * @brief Generates a random bigint number from a given number of digits
+ * 
+ * @param num_digits 
+ * @return bigint 
+ */
 bigint random_bigint(size_t const &num_digits)
 {
     std::vector<uint8_t> digits_r = std::vector<uint8_t>(0);
