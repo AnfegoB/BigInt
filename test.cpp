@@ -414,10 +414,12 @@ int main()
   std::cout << "------------------------------------------------------" << "\n";
   std::cout << "\n";
   std::cout << "Testing the results comparing with Python" << "\n";
-
+  std::filesystem::path path = std::filesystem::current_path();
+  std::string path_string = path.string();
+  std::cout << "Current directory: " << path_string ;
   for (size_t i = 1; i <= 5; ++i)
   {
-    std::string file = "bigint/data/data" + std::to_string(i) + ".txt";
+    std::string file = path_string + "/data/data" + std::to_string(i) + ".txt";
     std::ifstream input(file);
     if (!input.is_open())
     {
