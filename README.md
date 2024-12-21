@@ -20,7 +20,7 @@ This is the complete documentation
 
 ### Motivation
 
-This class should be viewed as an extension of the usual C++ signed integer types, except that your class will allow signed integers of unlimited range - limited only by the computer's memory.
+This class should be viewed as an extension of the usual C++ signed integer types, except that this class will allow signed integers of unlimited range - limited only by the computer's memory.
 
 ### Contents
 
