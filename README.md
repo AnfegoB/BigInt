@@ -270,19 +270,205 @@ std::cout << "-(123): \n"
 }
 ```
 #### Addition
+The addition of two bigints can be performed, even if they are negative the class handles the different sign operations (-a + b = b - a and a-b calls -= ). It is necessary to make sure to properly use the parentheses ().
+```cpp
+#include <stdexcept>
+#include "bigint.hpp"
+#include <iostream>
+#include <random>
+#include <vector>
+int main()
+{
+  bigint l("150");
+  bigint m("150");
+  bigint n("200");
+  bigint q("-90");
+  bigint r("-10");
+  bigint s("250");
+  bigint t("-11");
+  bigint v("-15");
 
+  std::cout << "l = 150, m = 150, l+=m: \n"
+            << (l += m) << "\n";
+  std::cout << "\n";
+  std::cout << "l : \n"
+            << (l) << "\n";
+  std::cout << "\n";
+  std::cout << "m : \n"
+            << (m) << "\n";
+  std::cout << "\n";
+
+  std::cout << "n=200, s= 250, n + s: \n"
+            << (n + s) << "\n";
+  std::cout << "\n";
+  std::cout << "n : \n"
+            << (n) << "\n";
+  std::cout << "\n";
+  std::cout << "s : \n"
+            << (s) << "\n";
+  std::cout << "\n";
+
+  std::cout << "q=" << q <<"t = " << t << ", q + t: \n"
+            << (q + t) << "\n";
+  std::cout << "\n";
+  std::cout << "q : \n"
+            << (q) << "\n";
+  std::cout << "\n";
+  std::cout << "t : \n"
+            << (t) << "\n";
+  std::cout << "\n";
+}
+```
 #### Subtraction
+Similarly for subtraction, tt checks for sign operations (a - (-b) = a + b) and (-a - ( - b ) = b - a). 
+```cpp
+#include <stdexcept>
+#include "bigint.hpp"
+#include <iostream>
+#include <random>
+#include <vector>
+int main()
+{
+  bigint l("300");
+  bigint m("150");
+  bigint n("200");
+  bigint q("-90");
+  bigint r("-10");
+  bigint s("250");
+
+  std::cout << "l = 300, m = 150, l-=m: \n"
+            << (l -= m) << "\n";
+  std::cout << "\n";
+  std::cout << "l : \n"
+            << (l) << "\n";
+  std::cout << "\n";
+  std::cout << "m : \n"
+            << (m) << "\n";
+  std::cout << "\n";
+
+  std::cout << "n=200, s= 250, n - s: \n"
+            << (n - s) << "\n";
+  std::cout << "\n";
+  std::cout << "n : \n"
+            << (n) << "\n";
+  std::cout << "\n";
+  std::cout << "s : \n"
+            << (s) << "\n";
+  std::cout << "q=" << q <<"t = " << t << ", q - t: \n"
+            << (q - t) << "\n";
+  std::cout << "\n";
+  std::cout << "q : \n"
+            << (q) << "\n";
+  std::cout << "\n";
+  std::cout << "t : \n"
+            << (t) << "\n";
+  std::cout << "\n";
+}
+```
 
 #### Increment/Decrement
+The increment and decrement operators can also be employed, they increase(decrease) the bigint by one. Depending on the pre- or post-fix position the returned value is given.
+
+```cpp
+#include <stdexcept>
+#include "bigint.hpp"
+#include <iostream>
+#include <random>
+#include <vector>
+int main()
+{
+  std::cout << "a : 10" << "\n";
+  std::cout << "++a :";
+  std::cout << std::boolalpha << ++alpha << "\n";
+  std::cout << "a :";
+  std::cout << std::boolalpha << (alpha) << "\n";
+  std::cout << "a++:";
+  std::cout << std::boolalpha << alpha++ << "\n";
+  std::cout << "a :";
+  std::cout << std::boolalpha << alpha << "\n";
+  std::cout << "\n";
+  std::cout << "--a :";
+  std::cout << std::boolalpha << (--alpha) << "\n";
+  std::cout << "a :";
+  std::cout << std::boolalpha << alpha << "\n";
+  std::cout << "a-- :";
+  std::cout << std::boolalpha << (alpha--) << "\n";
+  std::cout << "a :";
+  std::cout << std::boolalpha << alpha << "\n";
+}
+```
 
 #### Multiplication
+The multiplication between bigints is also implemented, the sign of the bigints is considered for the resulting sign.Initially it checks for a trivial product. It checks for sign operations (-- = +) (-+ = -)
 
+```cpp
+#include <stdexcept>
+#include "bigint.hpp"
+#include <iostream>
+#include <random>
+#include <vector>
+int main()
+{
+  bigint mult_a("5");
+  bigint mult_b("5");
+  bigint mult_c("0");
+  bigint mult_d("10");
+
+  std::cout << "a : " << mult_a << "\n";
+  std::cout << "b : " << mult_b << "\n";
+  std::cout << "c : " << mult_c << "\n";
+  std::cout << "d : " << mult_d << "\n";
+  std::cout << "\n";
+
+  std::cout << "a*= b: \n" << (mult_a *= mult_b) << "\n";
+  std::cout << "\n";
+
+  std::cout << "a : \n" << (mult_a) << "\n";
+
+  std::cout << "\n";
+
+  std::cout << "b : \n" << (mult_b) << "\n";
+  std::cout << "\n";
+
+  std::cout << "b =  5, d= 10, n * s: \n" << (mult_b * mult_d) << "\n";
+  std::cout << "\n";
+
+  std::cout << "b * 0 : \n" << (mult_b * mult_c) << "\n";
+}
+```
 ## Additional functions
 
 #### Exponentiation
+Exponentiation function, it gives the bigint number to the param big_b power.
+
+```cpp
+#include <stdexcept>
+#include "bigint.hpp"
+#include <iostream>
+#include <random>
+#include <vector>
+int main()
+{
+ bigint mult_a("5");
+ bigint mult_d("10");
+ std::cout << "a^d : " << mult_a.power(mult_d) << "\n";
+}
+```
 
 #### Random bigint generation
-
+It is also possible to generate a random bigint number from a given number of digits
+```cpp
+#include <stdexcept>
+#include "bigint.hpp"
+#include <iostream>
+#include <random>
+#include <vector>
+int main()
+{ 
+  std::cout << "Generating a bigint with 5000 digits:";
+  std::cout << random_bigint((size_t)5000) << "\n";
+}
+```
 ## Testing the library
 
 ### Automated tests
@@ -321,6 +507,3 @@ This section provides a complete reference to classes, member functions and obje
   - `bigint operator*(bigint lhs, const bigint &rhs)`: Overloading the _ operator. In this case the idea of overloading _= first and then the \* without reference is taken from the lecture notes.
 - Additional functions:
   - `bigint random_bigint(size_t const &num_digits)`: Generates a random bigint number from a given number of digits
-
-
-    
