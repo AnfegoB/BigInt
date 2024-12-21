@@ -3,6 +3,8 @@
 #include <iostream>
 #include <random>
 #include <vector>
+#include <fstream>
+#include <string>
 //#include <cinttypes>
 // #include <cmath>
 // ========================================
@@ -411,8 +413,55 @@ int main()
   std::cout << std::boolalpha << (((rand_a * rand_b) * rand_c) == (rand_a * (rand_b * rand_c))) << "\n";
   std::cout << "------------------------------------------------------" << "\n";
   std::cout << "\n";
-  //  std::cout << std::boolalpha << (num1 * num2) << "\n";
-  //  std::cout << std::boolalpha << (num1) << "\n";
-  //  std::cout << std::boolalpha << (num2) << "\n";
-  //  std::cout << std::boolalpha << (num1.power(num2)) << "\n";
+  std::cout << "Testing the results comparing with Python" << "\n";
+
+  for (size_t i = 1; i <= 5; ++i)
+  {
+    std::string file = "bigint/data/data" + std::to_string(i) + ".txt";
+    std::ifstream input(file);
+    if (!input.is_open())
+    {
+      std::cout << "Error opening file!";
+      return -1;
+    }
+    std::vector<std::string> lines;
+    std::string line;
+    while (getline(input, line))
+      lines.push_back(line);
+
+    bigint num1(lines[0]);
+    bigint num2(lines[1]);
+    bigint sum(lines[2]);
+    bigint sub(lines[3]);
+    bigint mult(lines[4]);
+
+    std::cout << "\n";
+    std::cout << "------------------------------------------------------" << "\n";
+    std::cout << "Reading from the file: " << file << "\n";
+    std::cout << "\n";
+    std::cout << "Number 1 read: " << num1 << "\n";
+    std::cout << "Number 2 read: " << num2 << "\n";
+    std::cout << "Summation read from python: " << sum << "\n";
+    std::cout << "Subtraction read from python: " << sub << "\n";
+    std::cout << "Multiplication read from python: " << mult << "\n";
+    std::cout << "\n";
+    std::cout << "num1 + num2: ";
+    std::cout << num1 + num2 << "\n";
+    std::cout << "num1 + num2 == summation_python" << "\n";
+    std::cout << std::boolalpha << (num1 + num2 == sum) << "\n";
+    std::cout << "\n";
+    std::cout << "num1 - num2 : ";
+    std::cout << num1 - num2 << "\n";
+    std::cout << "num1 - num2 == subtraction_python" << "\n";
+    std::cout << std::boolalpha << (num1 - num2 == sub) << "\n";
+    std::cout << "\n";
+    std::cout << "num1 * num2 : ";
+    std::cout << num1 * num2 << "\n";
+    std::cout << "num1 * num2 == multiplication_python" << "\n";
+    std::cout << std::boolalpha << (num1 * num2 == mult) << "\n";
+    std::cout << "------------------------------------------------------" << "\n";
+    input.close();
+  }
+
+  std::cout << "All done! :)" << "\n";
 }
