@@ -511,7 +511,7 @@ bigint operator++(bigint &big, int)
  * @brief Overloading the -= operator
  * Initially it checks for a trivial sum
  * It checks for sign operations (a - (-b) = a + b) and (-a - ( - b ) = b - a)
- * It only receives positive bigint integers, it uses += to receive the appropriate input
+ * It only receives positive bigint integers to run the algorithm, it uses += to receive the appropriate input
  * It cheeks if the rhs is bigger than the lhs and decides if the sign will be -
  * It takes the number at the least significant position and if the length is shorter than the result use a 0 instead
  * Then it subtracts them and subtracts the carry, if the result is below 0 then 1 is carried over and 10 is summed.
